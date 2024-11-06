@@ -1,0 +1,3 @@
+/Users/kinyarasam/Code/Challenge/game/Mission-Love-Ops/build/CMakeFiles/MissionLoveOps.dir
+/Users/kinyarasam/Code/Challenge/game/Mission-Love-Ops/build/CMakeFiles/edit_cache.dir
+/Users/kinyarasam/Code/Challenge/game/Mission-Love-Ops/build/CMakeFiles/rebuild_cache.dir
