@@ -7,7 +7,7 @@
 /**
  * main - Entry point.asm
  *
- * Returns: Always 0
+ * Return: Always 0
  *          otherwise 1.
  */
 int main(void)

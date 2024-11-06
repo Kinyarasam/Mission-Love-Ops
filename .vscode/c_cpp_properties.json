@@ -5,7 +5,7 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/include",
-                "/usr/local/Cellar/sdl2/2.30.5/include",
+                "/usr/local/Cellar/sdl2/2.30.9/include/SDL2",
                 "/usr/local/Cellar/lua/5.4.7/include/lua"
             ],
             "defines": [],
