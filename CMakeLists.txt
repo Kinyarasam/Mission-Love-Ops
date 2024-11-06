@@ -25,4 +25,4 @@ include_directories(${LUA_INCLUDE_DIR})
 add_executable(MissionLoveOps ${SOURCES})
 
 # Link libraries
-target_link_libraries(MissionLoveOps /usr/local/Cellar/sdl2/2.30.9/lib/libSDL2.dylib ${OPENGL_LIBRARIES} ${LUA_LIBRARIES})
+target_link_libraries(MissionLoveOps ${SDL2_LIBRARIES} ${OPENGL_LIBRARIES} ${LUA_LIBRARIES})
