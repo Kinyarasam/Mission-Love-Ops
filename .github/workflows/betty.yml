@@ -1,0 +1,28 @@
+name: Betty Style Check
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+  pull_request:
+    branches: [ "main", "develop" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Betty Linter
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck
+          git clone https://github.com/holbertonschool/Betty.git
+          cd Betty && sudo ./install.sh
+
+      - name: Run Betty Style Check
+        run: |
+          chmod +x scripts/check_betty_style.sh
+          ./scripts/check_betty_style.sh
