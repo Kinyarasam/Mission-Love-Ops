@@ -13,5 +13,6 @@
 int main(void)
 {
 	printf("Mission: Love Ops Initialized!\n");
+	printf("Mission: Love Ops Initialized!\n");
 	return (0);
 }
