@@ -10,8 +10,15 @@ typedef enum {
     GAME_STATE_EXIT
 } GameState;
 
+typedef struct {
+    int x, y;          // Position
+    int width, height; // Dimensions
+    int speed;         // Movement speed
+} Player;
+
+
 void handle_menu_state(SDL_Renderer *renderer);
-void handle_play_state(SDL_Renderer *renderer);
+void handle_play_state(SDL_Renderer *renderer, Player *player);
 
 /**
  * main - Entry point.
@@ -53,6 +60,7 @@ int main(void)
 	SDL_Event e;
 	int quit = 0;
 	GameState gameState = GAME_STATE_MENU;
+	Player player = { 400, 300, 50, 50, 5 };  // Centered on the screen with 50x50 size
 
 
 	lua_State* L = luaL_newstate();
@@ -91,7 +99,7 @@ int main(void)
 				handle_menu_state(renderer);
 				break;
 			case GAME_STATE_PLAY:
-				handle_play_state(renderer);
+				handle_play_state(renderer, &player);
 				break;
 			case GAME_STATE_EXIT:
 				quit = 1;
@@ -115,9 +123,30 @@ void handle_menu_state(SDL_Renderer *renderer) {
     SDL_RenderPresent(renderer);
 }
 
-void handle_play_state(SDL_Renderer *renderer) {
-    // Render gameplay (for now, just a simple placeholder)
-    SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255); // Green background for gameplay
+void handle_play_state(SDL_Renderer *renderer, Player *player) {
+    const Uint8 *keystate = SDL_GetKeyboardState(NULL);
+
+    // Move player based on key state
+    if (keystate[SDL_SCANCODE_UP]) {
+        player->y -= player->speed;
+    }
+    if (keystate[SDL_SCANCODE_DOWN]) {
+        player->y += player->speed;
+    }
+    if (keystate[SDL_SCANCODE_LEFT]) {
+        player->x -= player->speed;
+    }
+    if (keystate[SDL_SCANCODE_RIGHT]) {
+        player->x += player->speed;
+    }
+
+    // Clear screen and render player
+    SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255); // Green background
     SDL_RenderClear(renderer);
+
+    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); // Red for player
+    SDL_Rect playerRect = { player->x, player->y, player->width, player->height };
+    SDL_RenderFillRect(renderer, &playerRect);
+
     SDL_RenderPresent(renderer);
 }
